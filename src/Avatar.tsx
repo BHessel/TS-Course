@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const FALLBACK_AVATAR_URL = "https://cataas.com/cat/says/hello%20world!";
 export const FALLBACK_AVATAR_ALT_TEXT = "@hello-cat";
 
@@ -10,11 +12,13 @@ function Avatar({
   url = FALLBACK_AVATAR_URL,
   alt = FALLBACK_AVATAR_ALT_TEXT,
 }: AvatarProps) {
+  const [srcToRender, setSrcToRender] = useState(url);
+
   return (
     <img
-      src={url}
+      src={srcToRender}
       alt={alt}
-      onError={() => console.log("TODO - implement me")}
+      onError={() => setSrcToRender(FALLBACK_AVATAR_URL)}
     />
   );
 }
